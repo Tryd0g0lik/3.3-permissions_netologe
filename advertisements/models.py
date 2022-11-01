@@ -28,3 +28,10 @@ class Advertisement(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True
     )
+
+    def __str__(self):
+        return '%s' % (self.title,)
+
+    class Meta:
+        verbose_name = 'Объявление'
+        verbose_name_plural = 'Объявления'
