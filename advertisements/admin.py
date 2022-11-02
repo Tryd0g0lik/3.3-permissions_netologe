@@ -1,14 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
-from advertisements.models import AdvertisementStatusChoices, Advertisement
 
 
-# @admin.register(AdvertisementStatusChoices)
-# class AdvertisementStatusChoicesAdmin(admin.ModelAdmin):
-# 	...
-
-
+# @admin.register(Advertisement)
+from advertisements.models import Advertisement
 
 # @admin.register(Advertisement)
 class AdvertisementAdmin(admin.ModelAdmin):
