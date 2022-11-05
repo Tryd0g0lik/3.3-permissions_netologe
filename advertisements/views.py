@@ -1,9 +1,15 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
+from rest_framework import generics
+
+from advertisements.models import Advertisement
+from advertisements.serializers import AdvertisementSerializer
 
 
 class AdvertisementViewSet(ModelViewSet):
     """ViewSet для объявлений."""
+    queryset = Advertisement(generics.GenericAPIView)
+    serializer_class = AdvertisementSerializer
 
     # TODO: настройте ViewSet, укажите атрибуты для кверисета,
     #   сериализаторов и фильтров
