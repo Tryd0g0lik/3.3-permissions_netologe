@@ -8,7 +8,7 @@ from permissions import OwnerPermissions
 
 class AdvertisementViewSet(ModelViewSet):
     """ViewSet для объявлений."""
-    queryset = Advertisement.all()
+    queryset = Advertisement.objects.all()
     searializer_class = AdvertisementSerializer(queryset, many=True)
     permission_classes = [OwnerPermissions, IsAuthenticated,]
 
