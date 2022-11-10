@@ -1,4 +1,5 @@
 .idea
 client
-.env
+
 **/__pycache__/
+.env
