@@ -3,8 +3,10 @@ from django.db import models
 
 
 class AdvertisementStatusChoices(models.TextChoices):
+# class AdvertisementStatusChoices():
     """Статусы объявления."""
 
+#    choices = None
     OPEN = "OPEN", "Открыто"
     CLOSED = "CLOSED", "Закрыто"
 
@@ -12,8 +14,8 @@ class AdvertisementStatusChoices(models.TextChoices):
 class Advertisement(models.Model):
     """Объявление."""
 
-    title = models.TextField(null=True)
-    description = models.TextField(default='Нет описания')
+    title = models.CharField(null=True, max_length=100)
+    description = models.TextField(default='', max_length=300)
     status = models.TextField(
         choices=AdvertisementStatusChoices.choices,
         default=AdvertisementStatusChoices.OPEN

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-
+# admin qZT-KFA-z4H-kTp
 
 # @admin.register(Advertisement)
 from advertisements.models import Advertisement

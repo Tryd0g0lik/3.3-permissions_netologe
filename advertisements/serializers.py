@@ -11,6 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'first_name',
                   'last_name',)
+        read_only_fields = ['username', ]
 
 
 class AdvertisementSerializer(serializers.ModelSerializer):
@@ -33,7 +34,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         # изменить или переопределить его через API нельзя.
         # обратите внимание на `context` – он выставляется автоматически
         # через методы ViewSet.
-        # само поле при этом объявляется как `read_only=True`
+        # само поле при этом объявляется как `read_only=True`4
         validated_data["creator"] = self.context["request"].user
         return super().create(validated_data)
 
