@@ -23,7 +23,7 @@ from api_with_restrictions import settings
 
 router = DefaultRouter()
 # TODO: подключите `AdvertisementViewSet`
-router.register('adverte', AdvertisementViewSet)
+router.register('api/adverte', AdvertisementViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
