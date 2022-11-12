@@ -30,6 +30,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         read_only=True,
     )
 
+
     def validate_advertesmentd_count(self, number : int,
                                      creator_id : id):
         # ----------------
@@ -52,6 +53,7 @@ WHERE status = 'OPEN'
 
         raise serializers.ValidationError("Your 'OPEN-status advertisements more number 10")
         return False
+
 
     def validate_update(self, dict_instance, dict_responce):
         # ----------------
@@ -78,7 +80,6 @@ WHERE status = 'OPEN'
                   'status', 'created_at', )
 
 
-
     def create(self, validated_data):
         i = self.context['request'].user.id
         response_boolen = AdvertisementSerializer.validate_advertesmentd_count(
@@ -91,7 +92,6 @@ WHERE status = 'OPEN'
             return super().create(validated_data)
 
         return
-
 
 
     def update(self, instance, validated_data):
