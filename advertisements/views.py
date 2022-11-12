@@ -13,11 +13,12 @@ class AdvertisementViewSet(ModelViewSet):
     serializer_class = AdvertisementSerializer
     permission_classes = [IsAuthenticated, OwnerPermissions] # проверяем права
 
+
     # TODO: настройте ViewSet, укажите атрибуты для кверисета,
     #   сериализаторов и фильтров
 
-    def perform_create(self, serializer):
-        serializer.save(user = self.request.user)
+    # def perform_create(self, serializer):
+    #     serializer.save(user = self.request.user)
 
     def get_permissions(self):
         """Получение прав для действий."""
