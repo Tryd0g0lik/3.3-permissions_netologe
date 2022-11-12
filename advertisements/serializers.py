@@ -16,7 +16,16 @@ class UserSerializer(serializers.ModelSerializer):
 
 class AdvertisementSerializer(serializers.ModelSerializer):
     """Serializer для объявления."""
-    # def __init__(self, context):
+    """
+    
+    :type - Serializer for relationship with Advertisement model of models.py 
+    :param - validate_advertesmentd_count is Validator
+    :param - validate_update is Validator
+    :param - create() is def for requests the POST
+    :param - update()  is def for requests the PUT
+    :return of action for work with thw db from ads
+    """
+
     creator = UserSerializer(
         read_only=True,
     )
@@ -75,7 +84,8 @@ WHERE status = 'OPEN'
         response_boolen = AdvertisementSerializer.validate_advertesmentd_count(
             self, number=10,
             creator_id=i
-            )
+            ) # Validation
+
         if response_boolen == True:
             validated_data["creator"] = self.context["request"].user
             return super().create(validated_data)
@@ -96,7 +106,7 @@ WHERE status = 'OPEN'
             self,
             dict_instance=responce_instance,
             dict_responce=responce_context
-        )
+        ) # Validation
 
 
         if response == False:
