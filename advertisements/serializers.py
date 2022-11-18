@@ -1,3 +1,5 @@
+from pprint import pprint
+
 import psycopg2
 from django.contrib.auth.models import User
 from rest_framework import serializers
@@ -37,18 +39,9 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         # The Validator
         # TODO: The ads with the status 'OPEN' is more 'number' it's False, else True
         # ----------------
-        print(creator_id)
-        with psycopg2.connect(database="classified_ads", user=USER, password=PASS) as conn:
-            with conn.cursor() as cur:
-                cur.execute(f"""
-SELECT count(%s) FROM advertisements_advertisement
-WHERE status = 'OPEN'
-""" % (creator_id, ))
 
-                response_count_open_adv = (cur.fetchall())[0][0]
-        # cur.close()
-
-        if response_count_open_adv < int("%s" % (number, )):
+        response_count_open_adv = Advertisement.objects.filter(status='OPEN' ).count()
+        if response_count_open_adv <= int("%s" % (number, )):
             return True
 
         raise serializers.ValidationError("Your 'OPEN-status advertisements more number 10")
