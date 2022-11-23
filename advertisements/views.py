@@ -15,5 +15,3 @@ class AdvertisementViewSet(ModelViewSet):
 
     # TODO: настройте ViewSet, укажите атрибуты для кверисета,
     #   сериализаторов и фильтров
-
-
