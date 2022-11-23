@@ -3,5 +3,6 @@ client
 
 
 **/__pycache__/
-.env
 
+
+.env
