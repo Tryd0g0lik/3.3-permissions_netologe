@@ -13,7 +13,4 @@ class AdvertisementViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated, OwnerPermissions] # проверяем аунтификацию
 
 
-    # TODO: настройте ViewSet, укажите атрибуты для кверисета,
-    #   сериализаторов и фильтров
-
 
