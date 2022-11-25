@@ -1,10 +1,6 @@
-from pprint import pprint
-
-import psycopg2
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from advertisements.models import Advertisement
-from config import USER, PASS
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
 class AdvertisementFilterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advertisement
-        fields = ['title', 'description', 'created_at']
+        fields = ['title', 'description', 'status', 'created_at']
 
 class AdvertisementSerializer(serializers.ModelSerializer):
     """Serializer для объявления."""
@@ -50,7 +46,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
             return True
 
         raise serializers.ValidationError("Your 'OPEN-status advertisements more number 10")
-        return False
+        # return False
 
 
     def validate_update(self, dict_instance, dict_responce):
@@ -62,15 +58,13 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         if len(str(dict_instance)) > 3\
           and len(str(dict_responce)) > 3\
           and str(dict_instance) == str(dict_responce):
-
-            print(('True'))
             return True
+
         else:
-            print(('False'))
-            # HttpResponse('Unauthorized', status=401)
             raise serializers.ValidationError("This's not your advertisement")
 
             return False
+
     class Meta:
 
         model = Advertisement
