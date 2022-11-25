@@ -2,7 +2,7 @@ from pprint import pprint
 
 from django.http import HttpRequest
 from django.shortcuts import render
-from django_filters import DateFromToRangeFilter, FilterSet, DateTimeFilter
+from django_filters import DateFromToRangeFilter, FilterSet, DateTimeFilter, DateTimeFromToRangeFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters.widgets import RangeWidget
 from rest_framework import viewsets
@@ -47,7 +47,8 @@ class F2(GenericViewSet, FilterSet):
     #   сериализаторов и фильтров
 
 class dataFilterSet(FilterSet):
-    created_at = DateFromToRangeFilter()
+
+    created_at = DateTimeFromToRangeFilter()
 
     class Meta:
         model = Advertisement
@@ -56,6 +57,4 @@ class dataFilterSet(FilterSet):
 class FListCreateAPIView(ModelViewSet):
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementFilterSerializer
-    filterset_class = dataFilterSet()
-
-
+    filterset_class = dataFilterSet
