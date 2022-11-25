@@ -18,16 +18,21 @@ from django.urls import path, include
 
 from rest_framework.routers import DefaultRouter
 
-from advertisements.views import AdvertisementViewSet
+import advertisements
+from advertisements.views import AdvertisementViewSet, F
 from api_with_restrictions import settings
 
 router = DefaultRouter()
 # TODO: подключите `AdvertisementViewSet`
 router.register('api/adverte', AdvertisementViewSet)
+# router.registerapi/adverte/filters', include('advertisements.urls'),
+
 
 urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('api/adverte/filters', F, name='ff'),
+
 
 ] + router.urls
 

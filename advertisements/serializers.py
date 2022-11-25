@@ -16,6 +16,11 @@ class UserSerializer(serializers.ModelSerializer):
                   'last_name',)
         read_only_fields = ['username', ]
 
+class AdvertisementFilterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Advertisement
+        fields = ['title', 'description', 'created_at']
+
 class AdvertisementSerializer(serializers.ModelSerializer):
     """Serializer для объявления."""
     """

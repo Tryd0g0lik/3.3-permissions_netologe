@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django_filters import FilterSet, DateFromToRangeFilter
 
 
 class AdvertisementStatusChoices(models.TextChoices):
@@ -37,3 +38,16 @@ class Advertisement(models.Model):
     class Meta:
         verbose_name = 'Объявление'
         verbose_name_plural = 'Объявления'
+
+
+# class F(FilterSet):
+#     date = DateFromToRangeFilter()
+#
+#     class Meta:
+#         model = Advertisement
+#         fields = ['date']
+#
+#     def product_list(self, request):
+#         f = F({'date_after': '2022-11-18T06:56:37.798563Z', 'date_before': '2022-11-18T02:12:11.986926Z'})
+#       return render
+# print(f'f {f.__dict__}')
