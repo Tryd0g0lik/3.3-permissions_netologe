@@ -19,22 +19,23 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 import advertisements
-from advertisements.views import AdvertisementViewSet, F
+from advertisements.views import AdvertisementViewSet, FListCreateAPIView, dataFilterSet
 from api_with_restrictions import settings
 
 router = DefaultRouter()
 # TODO: подключите `AdvertisementViewSet`
-router.register('api/adverte', AdvertisementViewSet)
-# router.registerapi/adverte/filters', include('advertisements.urls'),
+router.register(r'api/adverte', AdvertisementViewSet)
+# router.register('api/adverte/filters', include('advertisements.urls'),
+router.register(r'filters', FListCreateAPIView, basename='filters')
 
 
 urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('api/adverte/filters', F, name='ff'),
+    # path('api/adverte/filters/', FListCreateAPIView.get_queryset(), name='ff'),
+]
 
-
-] + router.urls
+urlpatterns += router.urls
 
 if settings.DEBUG:
     import debug_toolbar

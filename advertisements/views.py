@@ -1,9 +1,12 @@
+from pprint import pprint
+
 from django.http import HttpRequest
 from django.shortcuts import render
 from django_filters import DateFromToRangeFilter, FilterSet, DateTimeFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters.widgets import RangeWidget
 from rest_framework import viewsets
+from rest_framework.generics import ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 
@@ -16,15 +19,15 @@ class AdvertisementViewSet(ModelViewSet):
     """ViewSet для объявлений."""
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementSerializer
-    permission_classes = [IsAuthenticated, OwnerPermissions] # проверяем
+    # permission_classes = [IsAuthenticated, OwnerPermissions] # проверяем
 
 
-class F(GenericViewSet, FilterSet):
+class F2(GenericViewSet, FilterSet):
     queryset = Advertisement.objects.all()
     serializer_class = AdvertisementFilterSerializer
     created_at = DateFromToRangeFilter(field_name='created_at')
-    print(created_at.__dict__)
-    print(created_at.distinct)
+    # print(created_at.__dict__)
+    # print(created_at.distinct)
     def date_filtrs(self, queryset, **kwargs):
         f = self.created_at
         after=Advertisement.objects.filter(created_at = kwargs[0])
@@ -42,3 +45,17 @@ class F(GenericViewSet, FilterSet):
 
     # TODO: настройте ViewSet, укажите атрибуты для кверисета,
     #   сериализаторов и фильтров
+
+class dataFilterSet(FilterSet):
+    created_at = DateFromToRangeFilter()
+
+    class Meta:
+        model = Advertisement
+        fields = ['created_at']
+
+class FListCreateAPIView(ModelViewSet):
+    queryset = Advertisement.objects.all()
+    serializer_class = AdvertisementFilterSerializer
+    filterset_class = dataFilterSet()
+
+
